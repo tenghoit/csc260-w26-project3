@@ -1,3 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Yeseva+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Teko:wght@300..700&family=Yeseva+One&display=swap');
+
+
+.yeseva-one-regular {
+  font-family: "Yeseva One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.indie-flower-regular {
+  font-family: "Indie Flower", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.teko-font {
+  font-family: "Teko", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+*{
+  --tea-green: #ccd5aeff;
+  --beige: #e9edc9ff;
+  --cornsilk: #fefae0ff;
+  --papaya-whip: #faedcdff;
+  --light-bronze: #d4a373ff;
+}
+
+
+
 .App {
   text-align: center;
 }
@@ -12,7 +47,7 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+bronze
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -37,6 +72,14 @@
   }
 }
 
+body{
+  background-color: var(--papaya-whip);
+}
+
+header{
+  font-family: "Yeseva One", serif;
+}
+
 main{
   display: flex;
   flex-flow: row wrap;
@@ -46,20 +89,39 @@ main{
 
 article{
   flex-basis: 30%;
-  background-color: lightgray;
-  /* border-radius: 1rem; */
+  background-color: var(--beige);
   margin-bottom: 1rem;
   display: flex;
   flex-flow: column wrap;
   justify-content: space-evenly;
   align-items: center;
+
+  border: 0.15rem solid black;
+  border-radius: 1rem;
+  
 }
 
 img{
   width: 100%;
+  height: auto;
+}
+
+img:hover{
+  box-shadow: 0.5rem 0.5rem 1rem 0.3rem var(--tea-green);
 }
 
 h2{
-  background-color: gray;
   width: 80%;
+  font-family: "Teko", sans-serif;
+}
+
+.detail img{
+  box-shadow: none;
+  width: 40%;
+}
+
+p{
+  font-family: "Indie Flower", cursive;
+  font-size: large;
+  font-weight: bold;
 }

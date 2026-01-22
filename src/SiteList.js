@@ -1,17 +1,9 @@
 import React from "react";
 
 // TODO: Import components from react-router-dom
-import {
-   BrowserRouter,
-   Route,
-   Routes,
-   Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function SiteList(props) {
-    const attributes = [
-
-    ]
 
    return (
       <>
@@ -35,7 +27,7 @@ function SiteList(props) {
             {props.sites.map(site =>(
                 <article>
                     <h2>{site.Site}</h2>
-                    <Link to={`/Site/${site.SiteID}`}><img src={`/${site.Image}`} alt={`Image of ${site.Site}`} /></Link>
+                    <Link to={`/Site/${site.SiteID}`}><img src={`/${site.Image}`} alt={`${site.Site}`} /></Link>
                 </article>
             ))}
          </main>

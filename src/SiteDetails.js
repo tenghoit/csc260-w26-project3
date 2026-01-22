@@ -1,7 +1,7 @@
 import React from "react";
 
 // TODO: Import components/hooks from react-router-dom
-import { BrowserRouter, Route, Routes, Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function SiteDetails(props) {
    // TODO: Call useParams() here
@@ -16,7 +16,7 @@ function SiteDetails(props) {
     return(
         <>
         <p>Site with ID {SiteID} not found.</p>
-        <footer><Link to="/">All Sites</Link></footer>
+        <footer><p><Link to="/">All Sites</Link></p></footer>
         </>
 
     )
@@ -26,12 +26,12 @@ function SiteDetails(props) {
         <header>
             <h1>{site.Site}</h1>
         </header>
-        <main>
-            <img src={`/${site.Image}`} alt={`Image of ${site.Site}`} />
+        <main className="detail">
+            <img src={`/${site.Image}`} alt={`${site.Site}`} />
             <p>{site.Description}</p>
             <p>Latitude: {site.Latitude} | Longitude: {site.Longitude}</p>
         </main>
-        <footer><Link to="/">All Sites</Link></footer>
+        <footer><p><Link to="/">All Sites</Link></p></footer>
         </>
     )
 }
