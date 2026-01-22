@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+main{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-content: space-evenly;
+}
+
+article{
+  flex-basis: 30%;
+  background-color: lightgray;
+  /* border-radius: 1rem; */
+  margin-bottom: 1rem;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+img{
+  width: 100%;
+}
+
+h2{
+  background-color: gray;
+  width: 80%;
+}

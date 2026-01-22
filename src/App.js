@@ -2,6 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SiteList from './SiteList';
+import SiteDetails from './SiteDetails';
 
 function App() {
 
@@ -21,7 +24,12 @@ function App() {
 
   return (
     <div className="App">
-      <p># Sites: {sites.length}</p>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SiteList sites={sites} />} />
+          <Route path="/Site/:SiteID" element={<SiteDetails sites={sites} />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
