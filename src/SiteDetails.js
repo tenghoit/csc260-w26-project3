@@ -12,28 +12,28 @@ function SiteDetails(props) {
    
    const site = props.sites.find(site => site.SiteID.toString() === SiteID);
 
-   if(site === undefined){
-    return(
-        <>
-        <p>Site with ID {SiteID} not found.</p>
-        <footer><p><Link to="/">All Sites</Link></p></footer>
-        </>
-
-    )
-   }else
-    return(
-        <>
+   return(
+    <>
         <header>
-            <h1>{site.Site}</h1>
+            <h1>Sites of Boyle County</h1>
+            <p><Link to="/">Home</Link></p>
         </header>
-        <main className="detail">
-            <img src={`/${site.Image}`} alt={`${site.Site}`} />
-            <p>{site.Description}</p>
-            <p>Latitude: {site.Latitude} | Longitude: {site.Longitude}</p>
-        </main>
+        {site === undefined ? 
+            <main>
+                <p>Site with ID {SiteID} not found.</p>
+            </main>
+            :
+            <main className="detail">
+                <h2>{site.Site}</h2>
+                <img src={`/${site.Image}`} alt={`${site.Site}`} />
+                <p>{site.Description}</p>
+                <p>Latitude: {site.Latitude} | Longitude: {site.Longitude}</p>
+                <p><a href={`https://www.google.com/maps/search/?api=1&query=${site.Latitude},${site.Longitude}`}>Google Map Link</a></p>
+            </main>
+        }
         <footer><p><Link to="/">All Sites</Link></p></footer>
-        </>
-    )
+    </>
+   )
 }
 
 export default SiteDetails;
