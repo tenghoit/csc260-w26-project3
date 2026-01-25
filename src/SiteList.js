@@ -40,8 +40,7 @@ function SiteList(props) {
    return (
       <>
          <header>
-            <h1>Sites of Boyle County</h1>
-            <p><Link to="/">Home</Link></p>
+            <h1><Link to="/">Sites of Boyle County</Link></h1>
             <form onSubmit={handleQuery}>
                {/* <label for="searchTerm">Search</label> */}
                <input type='text' id='searchTerm' name="searchTerm" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />

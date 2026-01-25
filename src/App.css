@@ -82,8 +82,12 @@ header{
   
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 main{
@@ -91,6 +95,8 @@ main{
   flex-flow: row wrap;
   justify-content: space-evenly;
   align-content: space-evenly;
+
+  perspective: 1200px;
 }
 
 article{
@@ -104,12 +110,45 @@ article{
 
   border: 0.15rem solid black;
   border-radius: 1rem;
-  
+
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
+
+article:nth-child(3n + 1){
+  transform: rotateY(10deg);
+  position: relative;
+  top: 25px;
+}
+
+article:nth-child(3n + 3){
+  transform: rotateY(-10deg);
+  position: relative;
+  top: 25px;
+}
+
+article:nth-child(3n + 2){
+  position: relative;
+  top: 65px;
+}
+
+article:hover{
+  transform: rotateY(0deg);
+  box-shadow: 0 1.5rem 2.5rem rgba(0,0,0,0.3);
+}
+
+article img {
+  width: 80%;
+  aspect-ratio: 16 / 9;
+  height: 140px;
+}
+
+
 
 img{
   width: 100%;
   height: auto;
+  border: 2px solid darkslategray;
 }
 
 img:hover{
@@ -119,6 +158,7 @@ img:hover{
 h2{
   width: 80%;
   font-family: "Teko", sans-serif;
+  text-shadow: 1.5px 1.5px 3px rgb(169, 184, 215);
 }
 
 .detail img{
@@ -126,11 +166,23 @@ h2{
   width: 40%;
 }
 
+.descDetail {
+  width: 90%;
+  border: 3px solid black;
+  background-color: var(--beige);
+  text-shadow: 1.5px 1.5px 3px rgb(169, 184, 215);
+}
+
 p{
   font-family: "Indie Flower", cursive;
   font-size: large;
   font-weight: bold;
 }
+
+h1 {
+  margin-right: 1rem;
+}
+
 
 button[value="true"]{
   background-color: yellow;

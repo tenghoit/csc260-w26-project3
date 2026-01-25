@@ -15,8 +15,7 @@ function SiteDetails(props) {
    return(
     <>
         <header>
-            <h1>Sites of Boyle County</h1>
-            <p><Link to="/">Home</Link></p>
+            <h1><Link to="/">Sites of Boyle County</Link></h1>
         </header>
         {site === undefined ? 
             <main>
@@ -26,7 +25,7 @@ function SiteDetails(props) {
             <main className="detail">
                 <h2>{site.Site}</h2>
                 <img src={`/${site.Image}`} alt={`${site.Site}`} />
-                <p>{site.Description}</p>
+                <p className="descDetail">{site.Description}</p>
                 <p>Latitude: {site.Latitude} | Longitude: {site.Longitude}</p>
                 <p><a href={`https://www.google.com/maps/search/?api=1&query=${site.Latitude},${site.Longitude}`}>Google Map Link</a></p>
             </main>
