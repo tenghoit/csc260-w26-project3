@@ -7,6 +7,7 @@ function Home(){
         <>
             <Header />
             <main>
+                <h1>Home</h1>
                 <h2>text for home page</h2>
             </main>  
         </>

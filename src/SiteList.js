@@ -45,6 +45,7 @@ function SiteList(props) {
    return (
       <>
          <Header />
+         <h2>All Sites</h2>
          <form onSubmit={handleQuery}>
             <div>
                <label for="searchTerm">Search: </label>

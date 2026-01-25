@@ -12,11 +12,8 @@ function App() {
 
   const [sites, setSites] = useState([])
   const [queriedSites, setQueriedSites] = useState([])
-  const [bookmarks, setBookmarks] = useState(initializeBookmarks)
-  const [history, setHistory] = useState(() => {
-    const val = localStorage.getItem("history")
-    return val ? JSON.parse(val) : []
-  })
+  const [bookmarks, setBookmarks] = useState({})
+  const [history, setHistory] = useState([])
 
   useEffect(() => {
     async function fetchSites() {
@@ -41,12 +38,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem('history', JSON.stringify(history));
   }, [history]);
-
-
-  function initializeBookmarks(){
-    const val = localStorage.getItem("bookmarks")
-    return val ? JSON.parse(val) : {}
-  }
+  
 
   function syncBookmarks(sites){
     setBookmarks(prev => { // updater

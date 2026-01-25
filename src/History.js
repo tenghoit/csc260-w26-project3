@@ -10,12 +10,17 @@ function History(props){
         <>
             <Header />
             <main>
-                {props.history.map(site =>(
-                    <article>
-                        <h2>{site.Site}</h2> 
-                        <Link to={`/sites/${site.SiteID}`}><img src={`/${site.Image}`} alt={`${site.Site}`} /></Link>
-                    </article>
-                ))}
+                <h2>Recently Visited</h2>
+                {props.history.length < 1 ? 
+                    <p>No History</p>
+                    :
+                    props.history.map(site =>(
+                        <article>
+                            <h2>{site.Site}</h2> 
+                            <Link to={`/sites/${site.SiteID}`}><img src={`/${site.Image}`} alt={`${site.Site}`} /></Link>
+                        </article>
+                    ))
+                }
             </main>
         </>
 
