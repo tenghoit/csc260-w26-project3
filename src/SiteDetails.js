@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // TODO: Import components/hooks from react-router-dom
 import { useParams } from "react-router-dom";
 import Header from "./Header";
 
 function SiteDetails(props) {
-   // TODO: Call useParams() here
    const { SiteID } = useParams();
-
-   // TODO: Replace "tt0034583" with the movie ID parameter
-   // find() returns undefined if the SiteID cannot be found
    
    const site = props.sites.find(site => site.SiteID.toString() === SiteID);
+   const setHistory = props.setHistory
+
+   useEffect(() => {
+        if(!site) return
+
+        setHistory(prev => {
+            let newHistory = prev.filter(site => site.SiteID.toString() !== SiteID) // if already in then rm
+            newHistory = [site, ...newHistory]
+            return newHistory.splice(0,10)
+        })
+   }, [SiteID, site, setHistory])
 
    return(
     <>

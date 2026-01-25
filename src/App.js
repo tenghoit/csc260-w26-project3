@@ -6,12 +6,17 @@ import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import SiteList from './SiteList';
 import SiteDetails from './SiteDetails';
 import Home from './Home';
+import History from './History'
 
 function App() {
 
   const [sites, setSites] = useState([])
   const [queriedSites, setQueriedSites] = useState([])
   const [bookmarks, setBookmarks] = useState(initializeBookmarks)
+  const [history, setHistory] = useState(() => {
+    const val = localStorage.getItem("history")
+    return val ? JSON.parse(val) : []
+  })
 
   useEffect(() => {
     async function fetchSites() {
@@ -22,6 +27,7 @@ function App() {
           setQueriedSites(result)
           setSites(result)
           syncBookmarks(result)
+          localStorage.clear()
         }
     };
     fetchSites();
@@ -31,6 +37,10 @@ function App() {
   useEffect(() => {
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
   }, [bookmarks]);
+
+  useEffect(() => {
+    localStorage.setItem('history', JSON.stringify(history));
+  }, [history]);
 
 
   function initializeBookmarks(){
@@ -58,7 +68,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path="/sites" element={<SiteList sites={sites} queriedSites={queriedSites} setQueriedSites={setQueriedSites} bookmarks={bookmarks} setBookmarks={setBookmarks} />} />
-          <Route path="/sites/:SiteID" element={<SiteDetails sites={sites} />} />
+          <Route path="/sites/:SiteID" element={<SiteDetails sites={sites} history={history} setHistory={setHistory} />} />
+          <Route path="/history" element={<History sites={sites} history={history} />} />
         </Routes>
       </BrowserRouter>
     </div>
