@@ -3,9 +3,11 @@ import React from "react";
 // TODO: Import components from react-router-dom
 import { useState } from 'react';
 import { Link } from "react-router-dom";
+import Header from "./Header";
 
 function SiteList(props) {
    const [searchTerm, setSearchTerm] = useState("");
+   const [bookmarkOnly, setBookmarkOnly] = useState(false)
    
    const sites = props.sites
    const queriedSites = props.queriedSites
@@ -16,21 +18,24 @@ function SiteList(props) {
    function handleQuery(event){
       event.preventDefault()
 
-      console.log(`Term: ${searchTerm}`);
-      
-      if(searchTerm === ""){
-         setQueriedSites(sites)
-         return
+      let result = [...sites]
+
+      const hasSearch = !(searchTerm === "")
+      if(hasSearch){
+         result = result.filter((site) => site['Site'].toLowerCase().includes(searchTerm.toLowerCase()))
       }
 
-      let result = queriedSites.filter((site) => site['Site'].toLowerCase().includes(searchTerm.toLowerCase()))
+      if(bookmarkOnly){
+         result = result.filter((site) => bookmarks[site['SiteID']])
+      }
+
       setQueriedSites(result)
    }
 
    function toggleBookmark(id){
       setBookmarks(prev => {
          let newBookmarks = {...prev}
-         const newValue = newBookmarks[id] === "true" ? "false" : "true"
+         const newValue = newBookmarks[id] === true ? false : true
          newBookmarks[id] = newValue
          return newBookmarks
       })
@@ -39,20 +44,24 @@ function SiteList(props) {
 
    return (
       <>
-         <header>
-            <h1><Link to="/">Sites of Boyle County</Link></h1>
-            <form onSubmit={handleQuery}>
-               {/* <label for="searchTerm">Search</label> */}
+         <Header />
+         <form onSubmit={handleQuery}>
+            <div>
+               <label for="searchTerm">Search: </label>
                <input type='text' id='searchTerm' name="searchTerm" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
-               <button type='submit' className='submit'>Search</button>
-            </form>
-         </header>
+            </div>
+            <div>
+               <label for="bookmarkOnly">Show only bookmarks: </label>
+               <input type="checkbox" id="bookmarkOnly" name="bookmarkOnly" checked={bookmarkOnly} onChange={e => setBookmarkOnly(e.target.checked)} />
+            </div>
+            <button type='submit' className='submit'>Submit</button>
+         </form>
          <main>
             {queriedSites.map(site =>(
                 <article>
                     <h2>{site.Site}</h2> 
                     <button onClick={() => toggleBookmark(site.SiteID)} value={bookmarks[site.SiteID]}>★</button>
-                    <Link to={`/Site/${site.SiteID}`}><img src={`/${site.Image}`} alt={`${site.Site}`} /></Link>
+                    <Link to={`/sites/${site.SiteID}`}><img src={`/${site.Image}`} alt={`${site.Site}`} /></Link>
                 </article>
             ))}
          </main>

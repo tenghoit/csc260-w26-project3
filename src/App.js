@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import SiteList from './SiteList';
 import SiteDetails from './SiteDetails';
+import Home from './Home';
 
 function App() {
 
@@ -55,8 +56,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<SiteList sites={sites} queriedSites={queriedSites} setQueriedSites={setQueriedSites} bookmarks={bookmarks} setBookmarks={setBookmarks} />} />
-          <Route path="/Site/:SiteID" element={<SiteDetails sites={sites} />} />
+          <Route path='/' element={<Home />} />
+          <Route path="/sites" element={<SiteList sites={sites} queriedSites={queriedSites} setQueriedSites={setQueriedSites} bookmarks={bookmarks} setBookmarks={setBookmarks} />} />
+          <Route path="/sites/:SiteID" element={<SiteDetails sites={sites} />} />
         </Routes>
       </BrowserRouter>
     </div>

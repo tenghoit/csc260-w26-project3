@@ -1,7 +1,8 @@
 import React from "react";
 
 // TODO: Import components/hooks from react-router-dom
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Header from "./Header";
 
 function SiteDetails(props) {
    // TODO: Call useParams() here
@@ -14,9 +15,7 @@ function SiteDetails(props) {
 
    return(
     <>
-        <header>
-            <h1><Link to="/">Sites of Boyle County</Link></h1>
-        </header>
+        <Header />
         {site === undefined ? 
             <main>
                 <p>Site with ID {SiteID} not found.</p>
@@ -30,7 +29,6 @@ function SiteDetails(props) {
                 <p><a href={`https://www.google.com/maps/search/?api=1&query=${site.Latitude},${site.Longitude}`}>Google Map Link</a></p>
             </main>
         }
-        <footer><p><Link to="/">All Sites</Link></p></footer>
     </>
    )
 }

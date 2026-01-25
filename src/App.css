@@ -90,6 +90,17 @@ header{
   z-index: 100;
 }
 
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+nav ul li{
+  margin: 0rem 1rem;
+}
+
 main{
   display: flex;
   flex-flow: row wrap;
