@@ -14,29 +14,26 @@ function SiteList(props) {
    const setBookmarks = props.setBookmarks
    
    function handleQuery(event){
-        event.preventDefault()
+      event.preventDefault()
 
-        console.log(`Term: ${searchTerm}`);
-        
-        if(searchTerm === ""){
-            setQueriedSites(sites)
-            return
-        }
+      console.log(`Term: ${searchTerm}`);
+      
+      if(searchTerm === ""){
+         setQueriedSites(sites)
+         return
+      }
 
-        let result = queriedSites.filter((site) => site['Site'].toLowerCase().includes(searchTerm.toLowerCase()))
-        setQueriedSites(result)
+      let result = queriedSites.filter((site) => site['Site'].toLowerCase().includes(searchTerm.toLowerCase()))
+      setQueriedSites(result)
    }
 
    function toggleBookmark(id){
-      const key = `bookmark-${id}`
-      let result = [...bookmarks]
-      const newValue = result[key] === "true" ? "false" : "true"
-
-      result[key] = newValue
-      localStorage.setItem(key, newValue)
-      setBookmarks(result)
-
-      console.log(`${key} : ${localStorage.getItem(key)}`);
+      setBookmarks(prev => {
+         let newBookmarks = {...prev}
+         const newValue = newBookmarks[id] === "true" ? "false" : "true"
+         newBookmarks[id] = newValue
+         return newBookmarks
+      })
    }
 
 
@@ -55,7 +52,7 @@ function SiteList(props) {
             {queriedSites.map(site =>(
                 <article>
                     <h2>{site.Site}</h2> 
-                    <button onClick={() => toggleBookmark(site.SiteID)} value={bookmarks[`bookmark-${site.SiteID}`]}>★</button>
+                    <button onClick={() => toggleBookmark(site.SiteID)} value={bookmarks[site.SiteID]}>★</button>
                     <Link to={`/Site/${site.SiteID}`}><img src={`/${site.Image}`} alt={`${site.Site}`} /></Link>
                 </article>
             ))}

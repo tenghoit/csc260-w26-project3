@@ -10,7 +10,7 @@ function App() {
 
   const [sites, setSites] = useState([])
   const [queriedSites, setQueriedSites] = useState([])
-  const [bookmarks, setBookmarks] = useState({})
+  const [bookmarks, setBookmarks] = useState(initializeBookmarks)
 
   useEffect(() => {
     async function fetchSites() {
@@ -20,23 +20,36 @@ function App() {
           const result = await response.json();
           setQueriedSites(result)
           setSites(result)
-          manageBookmarks(result)
+          syncBookmarks(result)
         }
     };
     fetchSites();
   }, []);
 
-  function manageBookmarks(sites){
-    let result = {}
-    for (const site of sites) {
-      const key = `bookmark-${site.SiteID}`
-      if(localStorage.getItem(key) === null){
-         localStorage.setItem(key, "false")
-      }
-      result[key] = localStorage.getItem(key)
-    }
-    setBookmarks(result)
+
+  useEffect(() => {
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+  }, [bookmarks]);
+
+
+  function initializeBookmarks(){
+    const val = localStorage.getItem("bookmarks")
+    return val ? JSON.parse(val) : {}
   }
+
+  function syncBookmarks(sites){
+    setBookmarks(prev => { // updater
+      let newBookmarks = {...prev}
+      for (const site of sites) {
+        if(newBookmarks[site.SiteID] === undefined){
+          newBookmarks[site.SiteID] = false // init false
+        }
+      }
+      return newBookmarks
+    })
+  }
+
+
 
   return (
     <div className="App">
