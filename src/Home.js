@@ -38,7 +38,7 @@ function Home(props){
                     </li>
                     <li>
                         Growing Collection:
-                        While we currently only feature 19 sites, 
+                        While we currently only feature {sites.length} sites, 
                         plans are underway to add support for hundreds of additional sites.
                     </li>
                 </ul>
