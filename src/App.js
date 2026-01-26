@@ -66,9 +66,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header />
-        
+
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Home sites={sites}  />} />
           <Route path="/sites" element={<SiteList sites={sites} queriedSites={queriedSites} setQueriedSites={setQueriedSites} bookmarks={bookmarks} setBookmarks={setBookmarks} />} />
           <Route path="/sites/:SiteID" element={<SiteDetails sites={sites} history={history} setHistory={setHistory} />} />
           <Route path="/history" element={<History sites={sites} history={history} />} />
