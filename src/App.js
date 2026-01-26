@@ -3,6 +3,8 @@ import './App.css';
 
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+
+import Header from "./Header";
 import SiteList from './SiteList';
 import SiteDetails from './SiteDetails';
 import Home from './Home';
@@ -12,8 +14,14 @@ function App() {
 
   const [sites, setSites] = useState([])
   const [queriedSites, setQueriedSites] = useState([])
-  const [bookmarks, setBookmarks] = useState({})
-  const [history, setHistory] = useState([])
+  const [bookmarks, setBookmarks] = useState(() => {
+    const val = localStorage.getItem("bookmarks")
+    return val ? JSON.parse(val) : {}
+  })
+  const [history, setHistory] = useState(() => {
+    const val = localStorage.getItem("history")
+    return val ? JSON.parse(val) : []
+  })
 
   useEffect(() => {
     async function fetchSites() {
@@ -57,6 +65,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Header />
+        
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path="/sites" element={<SiteList sites={sites} queriedSites={queriedSites} setQueriedSites={setQueriedSites} bookmarks={bookmarks} setBookmarks={setBookmarks} />} />

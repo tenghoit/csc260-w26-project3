@@ -1,17 +1,13 @@
 import React from "react";
 
-import Header from "./Header";
-
 function Home(){
     return(
-        <>
-            <Header />
-            <main>
-                <h1>Home</h1>
-                <h2>text for home page</h2>
-            </main>  
-        </>
-
+        <main>
+            <section>
+                <h2>Home</h2>
+                <p>text for home page</p>
+            </section>
+        </main> 
     )
 }
 

@@ -3,7 +3,6 @@ import React from "react";
 // TODO: Import components from react-router-dom
 import { useState } from 'react';
 import { Link } from "react-router-dom";
-import Header from "./Header";
 
 function SiteList(props) {
    const [searchTerm, setSearchTerm] = useState("");
@@ -41,32 +40,34 @@ function SiteList(props) {
       })
    }
 
-
    return (
-      <>
-         <Header />
-         <h2>All Sites</h2>
-         <form onSubmit={handleQuery}>
-            <div>
-               <label for="searchTerm">Search: </label>
-               <input type='text' id='searchTerm' name="searchTerm" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
-            </div>
-            <div>
-               <label for="bookmarkOnly">Show only bookmarks: </label>
-               <input type="checkbox" id="bookmarkOnly" name="bookmarkOnly" checked={bookmarkOnly} onChange={e => setBookmarkOnly(e.target.checked)} />
-            </div>
-            <button type='submit' className='submit'>Submit</button>
-         </form>
-         <main>
+      <main>
+         <section>
+            <h2>All Sites</h2>
+         </section>
+         <section>
+            <form onSubmit={handleQuery}>
+               <div>
+                  <label for="searchTerm">Search: </label>
+                  <input type='text' id='searchTerm' name="searchTerm" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
+               </div>
+               <div>
+                  <label for="bookmarkOnly">Show only bookmarks: </label>
+                  <input type="checkbox" id="bookmarkOnly" name="bookmarkOnly" checked={bookmarkOnly} onChange={e => setBookmarkOnly(e.target.checked)} />
+               </div>
+               <button type='submit' className='submit'>Submit</button>
+            </form>
+         </section>
+         <section className="allSites">
             {queriedSites.map(site =>(
-                <article>
-                    <h2>{site.Site}</h2> 
-                    <button onClick={() => toggleBookmark(site.SiteID)} value={bookmarks[site.SiteID]}>★</button>
-                    <Link to={`/sites/${site.SiteID}`}><img src={`/${site.Image}`} alt={`${site.Site}`} /></Link>
-                </article>
+               <article>
+                  <h2>{site.Site}</h2> 
+                  <button onClick={() => toggleBookmark(site.SiteID)} value={bookmarks[site.SiteID]}>★</button>
+                  <Link to={`/sites/${site.SiteID}`}><img src={`/${site.Image}`} alt={`${site.Site}`} /></Link>
+               </article>
             ))}
-         </main>
-      </>
+         </section>
+      </main>
    );
 }
 
