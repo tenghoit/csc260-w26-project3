@@ -149,21 +149,21 @@ article{
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-article:nth-child(3n + 1){
+article.tilt-left {
   transform: rotateY(10deg);
   position: relative;
   top: 25px;
 }
 
-article:nth-child(3n + 3){
+article.tilt-right {
   transform: rotateY(-10deg);
   position: relative;
   top: 25px;
 }
 
-article:nth-child(3n + 2){
+article.tilt-center {
   position: relative;
-  top: 65px;
+  top: 55px;
 }
 
 article:hover{
@@ -247,6 +247,16 @@ button{
   font-family: "Indie Flower", cursive;
   background-color: var(--tea-green);
   padding: 0.5rem;
+  font-weight: bold;
+  text-shadow: 1.5px 1.5px 3px rgb(169, 184, 215);
+}
+
+#lucky:hover {
+  cursor: pointer;
+}
+
+#bookMark:hover {
+  cursor: pointer;
 }
 
 #historyHeader{

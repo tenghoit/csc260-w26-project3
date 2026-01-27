@@ -1,7 +1,7 @@
 import React from "react";
 
 // TODO: Import components from react-router-dom
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
 function SiteList(props) {
@@ -40,6 +40,30 @@ function SiteList(props) {
       })
    }
 
+   useEffect(() => {
+      const articles = document.querySelectorAll(".allSites article");
+      const total = articles.length;
+      const remainder = total % 3;
+
+      articles.forEach((article, index) => {
+         article.classList.remove("tilt-left", "tilt-center", "tilt-right");
+
+      const pos = index % 3;
+      const inLastRow = remainder !== 0 && index >= total - remainder;
+
+      if (inLastRow) {
+         if (remainder === 2) {
+         article.classList.add(pos === 0 ? "tilt-left" : "tilt-right");
+         }
+         return;
+      }
+
+      if (pos === 0) article.classList.add("tilt-left");
+      if (pos === 1) article.classList.add("tilt-center");
+      if (pos === 2) article.classList.add("tilt-right");
+      });
+   }, [queriedSites]);
+
    return (
       <main>
          <section>
@@ -60,9 +84,9 @@ function SiteList(props) {
          </section>
          <section className="allSites">
             {queriedSites.map(site =>(
-               <article>
+               <article key={site.SiteID}>
                   <h2>{site.Site}</h2> 
-                  <button onClick={() => toggleBookmark(site.SiteID)} value={bookmarks[site.SiteID]}>★</button>
+                  <button key="bookMark" onClick={() => toggleBookmark(site.SiteID)} value={bookmarks[site.SiteID]}>★</button>
                   <Link to={`/sites/${site.SiteID}`}><img src={`/${site.Image}`} alt={`${site.Site}`} /></Link>
                </article>
             ))}
