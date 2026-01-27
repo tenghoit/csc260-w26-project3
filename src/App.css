@@ -34,7 +34,12 @@
 
 
 .App {
-  text-align: center;
+  text-align: left;
+
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .App-logo {
@@ -47,7 +52,7 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-bronze
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -78,7 +83,8 @@ body{
 
 header{
   font-family: "Yeseva One", serif;
-  background-color: white;
+  background-color: var(--tea-green);
+  width: 100%;
   
   display: flex;
   flex-flow: row wrap;
@@ -105,7 +111,18 @@ main{
   display: flex;
   flex-flow: column wrap;
   justify-content: space-evenly;
-  align-content: space-evenly;
+  align-content: center;
+  
+  width: 80%;
+  margin: 1rem;
+  /* background-color: gray; */
+}
+
+section{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  align-content: center;
 }
 
 .allSites {
@@ -173,8 +190,11 @@ img:hover{
 }
 
 h2{
-  width: 80%;
   font-family: "Teko", sans-serif;
+}
+
+.allSites h2{
+  width: 80%;
   text-shadow: 1.5px 1.5px 3px rgb(169, 184, 215);
   text-align: center;
 }
@@ -191,7 +211,7 @@ h2{
   text-shadow: 1.5px 1.5px 3px rgb(169, 184, 215);
 }
 
-p{
+p, form, .submit{
   font-family: "Indie Flower", cursive;
   font-size: large;
   font-weight: bold;
@@ -201,11 +221,37 @@ h1 {
   margin-right: 1rem;
 }
 
+.submit{
+  color: white;
+  background-color: green;
+}
 
-button[value="true"]{
+article button{
+  font-size: large;
+  background-color: var(--cornsilk);
+
+}
+
+article button[value="true"]{
   background-color: yellow;
 }
 
-button[value="false"]{
-  background-color: gray;
+button{
+  font-family: "Indie Flower", cursive;
+  padding: 0.5rem;
+}
+
+#lucky{
+  width: fit-content;
+  font-size: large;
+  font-family: "Indie Flower", cursive;
+  background-color: var(--tea-green);
+  padding: 0.5rem;
+}
+
+#historyHeader{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
 }

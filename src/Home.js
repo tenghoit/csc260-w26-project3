@@ -18,28 +18,27 @@ function Home(props){
                 <p>
                     Welcome to the Boyle County history celebration! 
                     As the nation approaches our 250th anniversity, 
-                    the America 250 KY Boyle County has been hard at work
+                    the America 250 KY Boyle County committee has been hard at work
                     to preserve and showcase the rich history of Boyle County.
                 </p>
             </section>
             <section>
                 <h2>Exploration</h2>
                 <ul>
-                    <li>
-                        Historical Sites: 
+                    <li><p>Historical Sites: 
                         Dive into a unique collection of historical sites in Boyle County,
-                        complete with detailed description and street-view imagery
-                    </li>
+                        complete with detailed descriptions and street-view imagery
+                    </p></li>
                     <li>
-                        Interative tools: 
+                        <p>Interative tools: 
                         Enhance your exploration with powerful search tools, 
                         bookmarking, and history capabilities to quickly find
-                        your desired sites
+                        your desired sites</p>
                     </li>
                     <li>
-                        Growing Collection:
+                        <p>Growing Collection:
                         While we currently only feature {sites.length} sites, 
-                        plans are underway to add support for hundreds of additional sites.
+                        plans are underway to add support for hundreds of additional sites</p>
                     </li>
                 </ul>
             </section>
@@ -47,7 +46,7 @@ function Home(props){
                 <h2>Useful Links</h2>
                 <p>Check out our full collection of sites: <Link to="/sites">All Sites</Link></p>
                 <p>Click here to go see recent history: <Link to="/history">History</Link></p>
-                <button onClick={goToRandomSite} >Feeling lucky?</button>
+                <button onClick={goToRandomSite} id="lucky" >Feeling lucky?</button>
             </section>
         </main> 
     )

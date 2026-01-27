@@ -7,11 +7,11 @@ function History(props){
     return(
         <main>
             <section>
-                <h2>Progress Tracker</h2>    
-                <p>Visited {props.history.length} / {props.sites.length} sites</p>
-            </section>             
-            <section>
-                <h2>Recently Visited</h2>
+                <div id="historyHeader">
+                    <h2>Recently Visited</h2>
+                    <p><strong>Progress Tracker</strong>: Visited {props.history.length} / {props.sites.length} sites</p>
+                </div>
+                
                 <div className="allSites">
                     {props.history.length < 1 ? 
                         <p>No History</p>
